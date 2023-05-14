@@ -773,7 +773,10 @@ static void OIL_Task(void* parameter)
 				{
 					count_som += Oil_count[i];
 				}
-				Oil_base_dat = count_som/50;
+				if(count_som/50 <= Oil_base_dat)
+				{
+					Oil_base_dat = count_som/50;					
+				}
 				Oil_i = 0;
 			}
 #if TEST_PRINTF_OIL
@@ -1544,6 +1547,14 @@ static void IWDG_Task(void* pvParameters)
 }
 
 
+
+
+/**********************************************************************
+  * @ 函数名  ： OneNet_FillBuf
+  * @ 功能说明： 封装数据
+  * @ 参数    ： uint8_t buff[][64]  
+  * @ 返回值  ： 无
+  ********************************************************************/
 static void OneNet_FillBuf(uint8_t buff[][64])
 {
 	char text[64] = {0};
